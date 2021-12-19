@@ -19,6 +19,6 @@ def LogNormalize(data: ad.AnnData, scale_factor: int):
     data.layers["counts"] = data.X.copy()
 
     # Normalize & Log-transform
-    data.X /= data.obs['size_factors'].values[:,None]
+    data.X *= data.obs['size_factors'].values[:,None]
     data.X = sc.pp.log1p(data.X)
     return data
